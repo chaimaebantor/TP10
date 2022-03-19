@@ -1,28 +1,27 @@
 package ma.cigma.pfe.dao;
 
 import ma.cigma.pfe.models.Facture;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
-
+@Repository
 public class FactureDaoImpl implements IFactureDao
 {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_clients");
-    EntityManager em=emf.createEntityManager();
+    @PersistenceContext
+    EntityManager em;
     public FactureDaoImpl() {
         System.out.println(" FactureDaoImpl ....");
     }
 
     @Override
     public Facture save(Facture f) {
-        System.out.println("FactureDaoImpl");
-        em.getTransaction().begin();
         em.persist(f);
-        em.getTransaction().commit();
         return null;
     }
 

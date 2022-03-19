@@ -1,20 +1,25 @@
 package ma.cigma.pfe.dao;
 
 import ma.cigma.pfe.models.Client;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
+@Repository
 public class ClientDaoImpl implements IClientDao
 {
-    private EntityManagerFactory emf= Persistence.createEntityManagerFactory("unit_clients");
-    private EntityManager em=emf.createEntityManager();
+
+@PersistenceContext
+    private EntityManager em;
     @Override
     public boolean save(Client c) {
         //System.out.println("Dao layer ");
-        em.getTransaction().begin();
         em.persist(c);
-        em.getTransaction().commit();
+
         return true;
     }
     @Override

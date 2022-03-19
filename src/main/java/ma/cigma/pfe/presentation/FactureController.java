@@ -2,24 +2,22 @@ package ma.cigma.pfe.presentation;
 
 import ma.cigma.pfe.models.Facture;
 import ma.cigma.pfe.service.IFactureservice;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
-
+@Controller
 public class FactureController {
-
+    @Autowired
     IFactureservice serviceFDI;
 
-    public FactureController() {
-        System.out.println("FactureController ....");
-    }
+
     public FactureController(IFactureservice factureService) {
         System.out.println("FactureController with factureService ..");
         this.serviceFDI = factureService;
     }
 
-    public void setFactureService(IFactureservice factureService) {
-        this.serviceFDI = factureService;
-    }
+
 
     public Facture save(Facture f ){
         System.out.println("FactureController ");
